@@ -2,7 +2,7 @@ package frdomain.ch3
 package algebra
 
 import java.util.Date
-import util.Try
+import scala.util.Try
 
 trait AccountService[Account, Amount, Balance] {
   def open(no: String, name: String, openingDate: Option[Date]): Try[Account]

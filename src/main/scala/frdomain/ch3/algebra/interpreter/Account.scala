@@ -1,18 +1,22 @@
 package frdomain.ch3
 package algebra.interpreter
 
-import java.util.{ Date, Calendar }
-import util.{ Try, Success, Failure }
+import frdomain.ch3.algebra.interpreter.Account.{ Balance, today }
 
-object common {
+import java.util.{ Calendar, Date }
+
+final case class Account(
+  no: String,
+  name: String,
+  dateOfOpening: Date = today,
+  dateOfClosing: Option[Date] = None,
+  balance: Balance = Balance()
+)
+
+object Account {
   type Amount = BigDecimal
 
-  def today = Calendar.getInstance.getTime
+  def today: Date = Calendar.getInstance.getTime
+
+  final case class Balance(amount: Amount = 0)
 }
-
-import common._
-
-case class Balance(amount: Amount = 0)
-
-case class Account(no: String, name: String, dateOfOpening: Date = today, dateOfClosing: Option[Date] = None, 
-  balance: Balance = Balance(0))
